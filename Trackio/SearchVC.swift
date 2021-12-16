@@ -12,6 +12,7 @@ class SearchVC: UIViewController {
   // MARK: - Properties
   let tLogo = UIImageView()
   let countryTextField = TrTextField()
+  let callToActionButton = TrButton(backgroundColor: .systemGreen, title: "Get Data")
   
   
   // MARK: - Lifecycle
@@ -22,6 +23,7 @@ class SearchVC: UIViewController {
     
     configureTLogo()
     configureTrTextField()
+    configureCTAButton()
   }
   
   // MARK: - Helpers
@@ -49,4 +51,14 @@ class SearchVC: UIViewController {
     ])
   }
   
+  func configureCTAButton() {
+    view.addSubview(callToActionButton)
+    
+    NSLayoutConstraint.activate([
+      callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
+      callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+      callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+      callToActionButton.heightAnchor.constraint(equalToConstant: 50)
+    ])
+  }
 }
