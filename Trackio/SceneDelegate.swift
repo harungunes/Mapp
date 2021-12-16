@@ -19,8 +19,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let scene = (scene as? UIWindowScene) else { return }
     
     window = UIWindow(windowScene: scene)
-    window?.rootViewController = SearchVC()
+    window?.rootViewController = configureTabbar()
     window?.makeKeyAndVisible()
+  }
+  
+  func configureSearchNC() -> UINavigationController {
+    let search = UINavigationController(rootViewController: SearchVC())
+    search.title = "Search"
+    
+    return search
+  }
+  
+  func configureCountryListNC() -> UINavigationController {
+    let countryList = UINavigationController(rootViewController: CountryListVC())
+    countryList.title = "Countries"
+    return countryList
+  }
+  
+  func configureTabbar() -> UITabBarController {
+    let tabbar = UITabBarController()
+    tabbar.viewControllers = [configureSearchNC(), configureCountryListNC()]
+    
+    return tabbar
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
