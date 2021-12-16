@@ -11,14 +11,17 @@ class SearchVC: UIViewController {
   
   // MARK: - Properties
   let tLogo = UIImageView()
+  let countryTextField = TrTextField()
   
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
+    navigationController?.isNavigationBarHidden = true
     
     configureTLogo()
+    configureTrTextField()
   }
   
   // MARK: - Helpers
@@ -35,6 +38,15 @@ class SearchVC: UIViewController {
     ])
   }
   
-  
+  func configureTrTextField() {
+    view.addSubview(countryTextField)
+    
+    NSLayoutConstraint.activate([
+      countryTextField.topAnchor.constraint(equalTo: tLogo.bottomAnchor, constant: 50),
+      countryTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+      countryTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+      countryTextField.heightAnchor.constraint(equalToConstant: 50)
+    ])
+  }
   
 }
