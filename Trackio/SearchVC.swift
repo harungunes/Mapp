@@ -19,11 +19,15 @@ class SearchVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    navigationController?.isNavigationBarHidden = true
     
     configureTLogo()
     configureTrTextField()
     configureCTAButton()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.isNavigationBarHidden = true
   }
   
   // MARK: - Helpers
@@ -51,8 +55,14 @@ class SearchVC: UIViewController {
     ])
   }
   
+  func pushCountryVC() {
+    let countryVC = CountryVC()
+    navigationController?.pushViewController(countryVC, animated: true)
+  }
+  
   func configureCTAButton() {
     view.addSubview(callToActionButton)
+    callToActionButton.addTarget(self, action: #selector(getData), for: .touchUpInside)
     
     NSLayoutConstraint.activate([
       callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
@@ -61,4 +71,13 @@ class SearchVC: UIViewController {
       callToActionButton.heightAnchor.constraint(equalToConstant: 50)
     ])
   }
+  
+  // MARK: - Objective-C functions
+  
+  @objc
+  func getData() {
+    pushCountryVC()
+  }
+  
+  
 }
