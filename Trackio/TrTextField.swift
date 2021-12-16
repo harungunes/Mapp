@@ -21,7 +21,7 @@ class TrTextField: UITextField {
   private func configure() {
     translatesAutoresizingMaskIntoConstraints = false
     
-    layer.borderWidth = 2
+    layer.borderWidth = 3
     layer.borderColor = UIColor.systemGray4.cgColor
     layer.cornerRadius = 10
     
