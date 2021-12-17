@@ -23,7 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   func configureSearchNC() -> UINavigationController {
     let search = UINavigationController(rootViewController: SearchVC())
-    search.title = "Search"
     search.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
     
     return search
@@ -31,7 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   func configureCountryListNC() -> UINavigationController {
     let countryList = UINavigationController(rootViewController: CountryListVC())
-    countryList.title = "Countries"
     countryList.tabBarItem = UITabBarItem(title: "Countries", image: UIImage(systemName: "list.dash"), tag: 1)
     
     return countryList
