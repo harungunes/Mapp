@@ -23,6 +23,7 @@ class SearchVC: UIViewController {
     configureTLogo()
     configureTrTextField()
     configureCTAButton()
+    dismissKeyboard()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -56,10 +57,9 @@ class SearchVC: UIViewController {
     ])
   }
   
-  func pushCountryVC() {
-    let countryVC = CountryVC()
-    countryVC.title = countryTextField.text
-    navigationController?.pushViewController(countryVC, animated: true)
+  func dismissKeyboard() {
+    let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+    view.addGestureRecognizer(tap)
   }
   
   func configureCTAButton() {
@@ -72,6 +72,12 @@ class SearchVC: UIViewController {
       callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
       callToActionButton.heightAnchor.constraint(equalToConstant: 50)
     ])
+  }
+  
+  func pushCountryVC() {
+    let countryVC = CountryVC()
+    countryVC.title = countryTextField.text
+    navigationController?.pushViewController(countryVC, animated: true)
   }
   
   // MARK: - Objective-C functions
