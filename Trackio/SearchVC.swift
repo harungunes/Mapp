@@ -14,6 +14,10 @@ class SearchVC: UIViewController {
   let countryTextField = TrTextField()
   let callToActionButton = TrButton(backgroundColor: .systemGreen, title: "Get Data")
   
+  var isCountryEntered: Bool {
+    return !(countryTextField.text!.isEmpty)
+  }
+  
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
@@ -76,6 +80,11 @@ class SearchVC: UIViewController {
   }
   
   func pushCountryVC() {
+    guard isCountryEntered else {
+      print("No country entered")
+      return
+    }
+    
     let countryVC = CountryVC()
     countryVC.title = countryTextField.text
     navigationController?.pushViewController(countryVC, animated: true)
