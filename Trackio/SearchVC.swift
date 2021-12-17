@@ -46,6 +46,7 @@ class SearchVC: UIViewController {
   
   func configureTrTextField() {
     view.addSubview(countryTextField)
+    countryTextField.delegate = self
     
     NSLayoutConstraint.activate([
       countryTextField.topAnchor.constraint(equalTo: tLogo.bottomAnchor, constant: 50),
@@ -57,6 +58,7 @@ class SearchVC: UIViewController {
   
   func pushCountryVC() {
     let countryVC = CountryVC()
+    countryVC.title = countryTextField.text
     navigationController?.pushViewController(countryVC, animated: true)
   }
   
@@ -79,5 +81,11 @@ class SearchVC: UIViewController {
     pushCountryVC()
   }
   
-  
+}
+
+extension SearchVC: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    pushCountryVC()
+    return true
+  }
 }
