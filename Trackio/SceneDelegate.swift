@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func configureCountryListNC() -> UINavigationController {
     let countryList = UINavigationController(rootViewController: CountryListVC())
     countryList.title = "Countries"
-    countryList.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+    countryList.tabBarItem = UITabBarItem(title: "Countries", image: UIImage(systemName: "list.dash"), tag: 1)
     
     return countryList
   }
