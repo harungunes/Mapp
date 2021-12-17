@@ -17,7 +17,7 @@ class CountryVC: UIViewController {
     configureNavigationBar()
   }
   
-  func configureNavigationBar() {
+  private func configureNavigationBar() {
     navigationController?.isNavigationBarHidden = false
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationController?.navigationBar.tintColor = .systemGreen
