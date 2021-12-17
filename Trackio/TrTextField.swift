@@ -27,10 +27,8 @@ class TrTextField: UITextField {
     
     font = UIFont.preferredFont(forTextStyle: .title2)
     textAlignment = .center
-    
     placeholder = "Search"
     textColor = .label
-    
     adjustsFontSizeToFitWidth = true
     minimumFontSize = 12
     

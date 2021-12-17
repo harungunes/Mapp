@@ -11,6 +11,13 @@ class CountryListVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .systemGreen
+    view.backgroundColor = .systemBackground
+    title = "Countries"
+    configureNavigationBar()
+  }
+  
+  private func configureNavigationBar() {
+    navigationController?.isNavigationBarHidden = false
+    navigationController?.navigationBar.prefersLargeTitles = true
   }
 }
