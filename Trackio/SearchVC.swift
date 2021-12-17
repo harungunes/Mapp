@@ -55,7 +55,7 @@ class SearchVC: UIViewController {
     countryTextField.delegate = self
     
     NSLayoutConstraint.activate([
-      countryTextField.topAnchor.constraint(equalTo: tLogo.bottomAnchor, constant: 50),
+      countryTextField.topAnchor.constraint(equalTo: tLogo.bottomAnchor, constant: 80),
       countryTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
       countryTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
       countryTextField.heightAnchor.constraint(equalToConstant: 50)
