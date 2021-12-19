@@ -81,7 +81,7 @@ class SearchVC: UIViewController {
   
   func pushCountryVC() {
     guard isCountryEntered else {
-      print("No country entered")
+      presentTrAlertVC(title: "No Country Entered", body: "Please enter a country. We need to know where to look for.", buttonTitle: "Ok")
       return
     }
     
