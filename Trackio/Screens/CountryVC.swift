@@ -17,9 +17,9 @@ class CountryVC: UIViewController {
     title = countryName
     configureNavigationBar()
     
-    NetworkManager.shared.getCountryData(for: countryName) { country, error in
+    NetworkManager.shared.getCountryData(for: countryName) { country, errorMessage in
       guard let country = country else {
-        self.presentTrAlertVC(title: "Bad stuff happened", body: error!, buttonTitle: "Ok")
+        self.presentTrAlertVC(title: "Bad stuff happened", body: errorMessage!.rawValue, buttonTitle: "Ok")
         return
       }
       
