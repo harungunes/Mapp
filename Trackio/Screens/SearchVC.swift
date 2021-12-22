@@ -86,7 +86,7 @@ class SearchVC: UIViewController {
     }
     
     let countryVC = CountryVC()
-    countryVC.title = countryTextField.text
+    countryVC.countryName = countryTextField.text
     navigationController?.pushViewController(countryVC, animated: true)
   }
   

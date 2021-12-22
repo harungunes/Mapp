@@ -14,6 +14,7 @@ class CountryVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
+    title = countryName
     configureNavigationBar()
     
     NetworkManager.shared.getCountryData(for: countryName) { country, error in
