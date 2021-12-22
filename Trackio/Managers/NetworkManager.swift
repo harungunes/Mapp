@@ -14,7 +14,7 @@ class NetworkManager {
   
   private init() {}
   
-  func getCountryData(for country: String, page: Int, completed: @escaping ([Country]?, String?) -> Void) {
+  func getCountryData(for country: String, completed: @escaping ([Country]?, String?) -> Void) {
     
     let endpoint = address + "\(country)"
     

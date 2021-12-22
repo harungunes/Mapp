@@ -15,6 +15,16 @@ class CountryVC: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     configureNavigationBar()
+    
+    NetworkManager.shared.getCountryData(for: countryName) { country, error in
+      guard let country = country else {
+        self.presentTrAlertVC(title: "Bad stuff happened", body: error!, buttonTitle: "Ok")
+        return
+      }
+      
+      print(country)
+      
+    }
   }
   
   private func configureNavigationBar() {
