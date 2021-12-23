@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func configureTabbar() -> UITabBarController {
     let tabbar = UITabBarController()
     tabbar.viewControllers = [configureSearchNC(), configureCountryListNC()]
-    UITabBar.appearance().tintColor = .systemGreen
+    UITabBar.appearance().tintColor = .systemPurple
     UITabBar.appearance().layer.borderWidth = 0.0
     UITabBar.appearance().clipsToBounds = true
     UITabBar.appearance().isTranslucent = false
