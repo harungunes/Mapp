@@ -30,7 +30,7 @@ class TrTextField: UITextField {
     placeholder = "Search"
     textColor = .label
     adjustsFontSizeToFitWidth = true
-    minimumFontSize = 12
+    minimumFontSize = 14
     
     returnKeyType = .go
     autocorrectionType = .yes
