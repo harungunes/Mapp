@@ -12,7 +12,7 @@ class SearchVC: UIViewController {
   // MARK: - Properties
   let tLogo = UIImageView()
   let countryTextField = TrTextField()
-  let callToActionButton = TrButton(backgroundColor: .systemGreen, title: "Get Data")
+  let callToActionButton = TrButton(backgroundColor: .systemPurple, title: "Get Data")
   
   var isCountryEntered: Bool {
     return !(countryTextField.text!.isEmpty)
