@@ -31,7 +31,7 @@ class CountryVC: UIViewController {
   private func configureNavigationBar() {
     navigationController?.isNavigationBarHidden = false
     navigationController?.navigationBar.prefersLargeTitles = true
-    navigationController?.navigationBar.tintColor = .systemGreen
+    navigationController?.navigationBar.tintColor = .systemPurple
   }
 
 }
