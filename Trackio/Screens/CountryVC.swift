@@ -17,13 +17,14 @@ class CountryVC: UIViewController {
     title = countryName
     configureNavigationBar()
     
-    NetworkManager.shared.getCountryData(for: countryName) { country, errorMessage in
-      guard let country = country else {
-        self.presentTrAlertVC(title: "Bad stuff happened", body: errorMessage!.rawValue, buttonTitle: "Ok")
-        return
-      }
+    NetworkManager.shared.getCountryData(for: countryName) { result in
       
-      print(country)
+      switch result {
+      case .success(let country):
+        print(country.cases)
+      case .failure(let error):
+        print(error.rawValue)
+      }
       
     }
   }
