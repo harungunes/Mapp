@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ErrorMessages: String {
+enum TrErrorMessages: String, Error {
   case invalidUsername = "This username created an invalid request. Please try again."
   case unableToComplete = "Unable to complete your request. Please check your internet connection."
   case invalidResponse = "Country not found or doesn't have any cases."

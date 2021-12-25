@@ -14,28 +14,28 @@ class NetworkManager {
   
   private init() {}
   
-  func getCountryData(for country: String, completed: @escaping (Country?, ErrorMessages?) -> Void) {
+  func getCountryData(for country: String, completed: @escaping (Result<Country, TrErrorMessages>) -> Void) {
     
     let endpoint = address + "\(country)"
     
     guard let url = URL(string: endpoint) else {
-      completed(nil, .invalidUsername)
+      completed(.failure(.invalidUsername))
       return
     }
     
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
       
       if let _ = error {
-        completed(nil, .unableToComplete)
+        completed(.failure(.unableToComplete))
       }
       
       guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-        completed(nil, .invalidResponse)
+        completed(.failure(.invalidResponse))
         return
       }
       
       guard let data = data else {
-        completed(nil, .invalidData)
+        completed(.failure(.invalidData))
         return
       }
       
@@ -44,9 +44,9 @@ class NetworkManager {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         let countryData = try decoder.decode(Country.self, from: data)
-        completed(countryData, nil)
+        completed(.success(countryData))
       } catch {
-        completed(nil, .invalidData)
+        completed(.failure(.invalidData))
       }
     }
     
