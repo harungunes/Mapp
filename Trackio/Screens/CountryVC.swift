@@ -43,9 +43,21 @@ class CountryVC: UIViewController {
   }
   
   func configureCollectionView() {
-    collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewLayout())
+    collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createFlowLayout())
     view.addSubview(collectionView)
     collectionView.backgroundColor = .systemPink
     collectionView.register(CountryCell.self, forCellWithReuseIdentifier: CountryCell.reuseID)
+  }
+  
+  func createFlowLayout() -> UICollectionViewFlowLayout {
+    let width = view.bounds.width
+    let padding: CGFloat = 12
+    let cellWidth = width - (padding * 2)
+    
+    let flowLayout = UICollectionViewFlowLayout()
+    flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+    flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth / 4)
+    
+    return flowLayout
   }
 }
