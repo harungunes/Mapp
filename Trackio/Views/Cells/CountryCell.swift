@@ -8,7 +8,7 @@
 import UIKit
 
 class CountryCell: UICollectionViewCell {
-  static let reuseID = "FollowerCell"
+  static let reuseID = "CountryCell"
   
   let flagImageView = FlagImageView(frame: .zero)
   let countryLabel = TrTitleLabel(textAlignment: .center, fontSize: 20)

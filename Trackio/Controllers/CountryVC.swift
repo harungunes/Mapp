@@ -9,8 +9,13 @@ import UIKit
 
 class CountryVC: UIViewController {
   
+  enum Section {
+    case main
+  }
+  
   var countryName: String!
   var collectionView: UICollectionView!
+  var dataSource: UICollectionViewDiffableDataSource<Section, Country>!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -59,5 +64,13 @@ class CountryVC: UIViewController {
     flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth / 4)
     
     return flowLayout
+  }
+  
+  func condigureDataSource() {
+    dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CountryCell.reuseID, for: <#T##IndexPath#>)
+      
+      return cell
+    })
   }
 }
