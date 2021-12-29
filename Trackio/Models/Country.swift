@@ -40,7 +40,8 @@
 
 import Foundation
 
-struct Country: Codable {
+struct Country: Codable, Hashable {
+  
   let country: String
   let cases: Int
   let todayCases: Int
@@ -51,6 +52,6 @@ struct Country: Codable {
   let countryInfo: CountryInfo
 }
 
-struct CountryInfo: Codable {
+struct CountryInfo: Codable, Hashable {
   let flag: String
 }
