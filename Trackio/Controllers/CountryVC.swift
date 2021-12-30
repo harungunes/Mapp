@@ -68,7 +68,7 @@ class CountryVC: UIViewController {
   
   func condigureDataSource() {
     dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CountryCell.reuseID, for: <#T##IndexPath#>)
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CountryCell.reuseID, for: indexPath)
       
       return cell
     })
