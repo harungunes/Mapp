@@ -14,9 +14,9 @@ class TrTitleLabel: UILabel {
     configure()
   }
   
-  init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+  init(align: NSTextAlignment, fontSize: CGFloat) {
     super.init(frame: .zero)
-    self.textAlignment = textAlignment
+    self.textAlignment = align
     self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
     configure()
   }

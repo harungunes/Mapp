@@ -12,7 +12,7 @@ class TrAlertVC: UIViewController {
   // MARK: - Properties
   let containerView = UIView()
   
-  let titleLabel = TrTitleLabel(textAlignment: .center, fontSize: 20)
+  let titleLabel = TrTitleLabel(align: .center, fontSize: 20)
   let bodyLabel = TrBodyLabel(textAlignment: .center)
   let actionButton = TrButton(backgroundColor: .systemPink, title: "Ok")
   
