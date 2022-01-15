@@ -21,7 +21,7 @@ class CountryVC: UIViewController {
     super.viewDidLoad()
     
     configure()
-    getCountry()
+//    getCountry()
     configureCollectionView()
   }
   
@@ -34,18 +34,18 @@ class CountryVC: UIViewController {
     navigationController?.navigationBar.tintColor = .systemPurple
   }
   
-  func getCountry() {
-    
-    NetworkManager.shared.getCountryData(for: countryName) { result in
-      
-      switch result {
-      case .success(let country):
-        print(country.cases)
-      case .failure(let error):
-        self.presentTrAlertVC(title: "Bad stuff happened", body: error.rawValue, buttonTitle: "Ok")
-      }
-    }
-  }
+//  func getCountry() {
+//
+//    NetworkManager.shared.getCountryData() { result in
+//
+//      switch result {
+//      case .success(let country):
+//        print(country.cases)
+//      case .failure(let error):
+//        self.presentTrAlertVC(title: "Bad stuff happened", body: error.rawValue, buttonTitle: "Ok")
+//      }
+//    }
+//  }
   
   func configureCollectionView() {
     collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createFlowLayout())
