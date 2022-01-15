@@ -46,7 +46,7 @@ class CountryListVC: UIViewController {
   }
   
   func configureCollectionView() {
-    collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnLayout())
+    collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createOneColumnLayout())
     view.addSubview(collectionView)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     
@@ -54,17 +54,15 @@ class CountryListVC: UIViewController {
     collectionView.register(CountryCell.self, forCellWithReuseIdentifier: CountryCell.reuseID)
   }
   
-  func createThreeColumnLayout() -> UICollectionViewFlowLayout {
+  func createOneColumnLayout() -> UICollectionViewFlowLayout {
     
     let width = view.bounds.width
     let padding: CGFloat = 12
-    let minimumItemSpacing: CGFloat = 10
-    let availableWidth = width - (padding * 2) - (minimumItemSpacing * 2)
-    let itemWidth = availableWidth / 3
+    let itemWidth = width - (padding * 3)
     
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-    flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40)
+    flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth / 4)
     
     return flowLayout
   }
