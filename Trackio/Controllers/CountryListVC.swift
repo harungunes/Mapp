@@ -10,13 +10,16 @@ import UIKit
 class CountryListVC: UIViewController {
   
   var countryList: [Country] = []
+  var collectionView: UICollectionView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     title = "Trackio"
+    
     configureNavigationBar()
     getCountryData()
+    configureCollectionView()
   }
   
   private func configureNavigationBar() {
@@ -36,5 +39,17 @@ class CountryListVC: UIViewController {
       }
     }
   }
+  
+  func configureCollectionView() {
+    collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewLayout())
+    view.addSubview(collectionView)
+    collectionView.translatesAutoresizingMaskIntoConstraints = false
+    
+    collectionView.delegate = self
+    collectionView.register(CountryCell.self, forCellWithReuseIdentifier: CountryCell.reuseID)
+  }
 }
 
+extension CountryListVC: UICollectionViewDelegate {
+  
+}
