@@ -14,11 +14,9 @@ class NetworkManager {
   
   private init() {}
   
-  func getCountryData(for country: String, completed: @escaping (Result<Country, TrErrorMessages>) -> Void) {
+  func getCountryData(completed: @escaping (Result<[Country], TrErrorMessages>) -> Void) {
     
-    let endpoint = address + "\(country)"
-    
-    guard let url = URL(string: endpoint) else {
+    guard let url = URL(string: address) else {
       completed(.failure(.invalidUsername))
       return
     }
@@ -43,7 +41,7 @@ class NetworkManager {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        let countryData = try decoder.decode(Country.self, from: data)
+        let countryData = try decoder.decode([Country].self, from: data)
         completed(.success(countryData))
       } catch {
         completed(.failure(.invalidData))
