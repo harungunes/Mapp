@@ -9,8 +9,13 @@ import UIKit
 
 class CountryListVC: UIViewController {
   
+  enum Section {
+    case main
+  }
+  
   var countryList: [Country] = []
   var collectionView: UICollectionView!
+  var dataSource: UICollectionViewDiffableDataSource<Section, Country>!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,6 +25,7 @@ class CountryListVC: UIViewController {
     configureNavigationBar()
     getCountryData()
     configureCollectionView()
+    configureDataSource()
   }
   
   private func configureNavigationBar() {
@@ -34,22 +40,47 @@ class CountryListVC: UIViewController {
         self.presentTrAlertVC(title: "Bad stuff happened here", body: error.rawValue, buttonTitle: "Ok")
       case .success(let countries):
         self.countryList = countries
-        
-        print(self.countryList[0])
+        self.updateData()
       }
     }
   }
   
   func configureCollectionView() {
-    collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewLayout())
+    collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnLayout())
     view.addSubview(collectionView)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     
-    collectionView.delegate = self
+    collectionView.backgroundColor = .systemBackground
     collectionView.register(CountryCell.self, forCellWithReuseIdentifier: CountryCell.reuseID)
   }
-}
-
-extension CountryListVC: UICollectionViewDelegate {
   
+  func createThreeColumnLayout() -> UICollectionViewFlowLayout {
+    
+    let width = view.bounds.width
+    let padding: CGFloat = 12
+    let minimumItemSpacing: CGFloat = 10
+    let availableWidth = width - (padding * 2) - (minimumItemSpacing * 2)
+    let itemWidth = availableWidth / 3
+    
+    let flowLayout = UICollectionViewFlowLayout()
+    flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+    flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40)
+    
+    return flowLayout
+  }
+  
+  func configureDataSource() {
+    dataSource = UICollectionViewDiffableDataSource<Section, Country>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, country) -> UICollectionViewCell? in
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CountryCell.reuseID, for: indexPath) as! CountryCell
+      cell.set(country: country)
+      return cell
+    })
+  }
+  
+  func updateData() {
+    var snapshot = NSDiffableDataSourceSnapshot<Section, Country>()
+    snapshot.appendSections([.main])
+    snapshot.appendItems(countryList)
+    dataSource.apply(snapshot,animatingDifferences: true)
+  }
 }
