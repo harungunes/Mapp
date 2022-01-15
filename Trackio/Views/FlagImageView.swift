@@ -22,6 +22,6 @@ class FlagImageView: UIImageView {
     translatesAutoresizingMaskIntoConstraints = false
     layer.cornerRadius = 10
     clipsToBounds = true
-    image = UIImage(systemName: "leaf.fill")
+    image = UIImage(named: "placeholder")
   }
 }

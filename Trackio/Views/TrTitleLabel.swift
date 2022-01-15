@@ -30,6 +30,6 @@ class TrTitleLabel: UILabel {
     
     lineBreakMode = .byTruncatingTail
     textColor = .label
-    minimumScaleFactor = 0.9
+    minimumScaleFactor = 0.75
   }
 }
