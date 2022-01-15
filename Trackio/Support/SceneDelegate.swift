@@ -17,33 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let scene = (scene as? UIWindowScene) else { return }
     
     window = UIWindow(windowScene: scene)
-    window?.rootViewController = configureTabbar()
+    window?.rootViewController = configureCountryListNC()
     window?.makeKeyAndVisible()
-  }
-  
-  func configureSearchNC() -> UINavigationController {
-    let search = UINavigationController(rootViewController: SearchVC())
-    search.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-    
-    return search
   }
   
   func configureCountryListNC() -> UINavigationController {
     let countryList = UINavigationController(rootViewController: CountryListVC())
-    countryList.tabBarItem = UITabBarItem(title: "Countries", image: UIImage(systemName: "list.dash"), tag: 1)
     
     return countryList
-  }
-  
-  func configureTabbar() -> UITabBarController {
-    let tabbar = UITabBarController()
-    tabbar.viewControllers = [configureSearchNC(), configureCountryListNC()]
-    UITabBar.appearance().tintColor = .systemPurple
-    UITabBar.appearance().layer.borderWidth = 0.0
-    UITabBar.appearance().clipsToBounds = true
-    UITabBar.appearance().isTranslucent = false
-    
-    return tabbar
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
