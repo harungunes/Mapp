@@ -81,6 +81,6 @@ class CountryListVC: UIViewController {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Country>()
     snapshot.appendSections([.main])
     snapshot.appendItems(countryList)
-    dataSource.apply(snapshot,animatingDifferences: true)
+    DispatchQueue.main.async { self.dataSource.apply(snapshot,animatingDifferences: true) }
   }
 }
