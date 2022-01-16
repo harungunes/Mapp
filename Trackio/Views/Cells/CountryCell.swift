@@ -24,6 +24,7 @@ class CountryCell: UICollectionViewCell {
   
   func set(country: Country) {
     countryLabel.text = country.country
+    flagImageView.downloadImage(from: country.countryInfo.flag)
   }
   
   private func configure() {
