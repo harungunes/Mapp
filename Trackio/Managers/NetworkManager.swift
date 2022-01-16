@@ -5,12 +5,14 @@
 //  Created by Harun Gunes on 22/12/2021.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
+  
   static let shared = NetworkManager()
   
-  let address = "https://disease.sh/v3/covid-19/countries/"
+  private let address = "https://disease.sh/v3/covid-19/countries/"
+  let cache = NSCache<NSString, UIImage>()
   
   private init() {}
   
