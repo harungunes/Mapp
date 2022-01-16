@@ -9,9 +9,7 @@ import UIKit
 
 class CountryListVC: UIViewController {
   
-  enum Section {
-    case main
-  }
+  enum Section { case main }
   
   var countryList: [Country] = []
   var collectionView: UICollectionView!
@@ -34,7 +32,9 @@ class CountryListVC: UIViewController {
   }
   
   func getCountryData() {
-    NetworkManager.shared.getCountryData { result in
+    NetworkManager.shared.getCountryData { [weak self] result in
+      guard let self = self else { return }
+      
       switch result {
       case .failure(let error):
         self.presentTrAlertVC(title: "Bad stuff happened here", body: error.rawValue, buttonTitle: "Ok")
@@ -46,25 +46,12 @@ class CountryListVC: UIViewController {
   }
   
   func configureCollectionView() {
-    collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createOneColumnLayout())
+    collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createOneColumnLayout(in: view))
     view.addSubview(collectionView)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     
     collectionView.backgroundColor = .systemBackground
     collectionView.register(CountryCell.self, forCellWithReuseIdentifier: CountryCell.reuseID)
-  }
-  
-  func createOneColumnLayout() -> UICollectionViewFlowLayout {
-    
-    let width = view.bounds.width
-    let padding: CGFloat = 12
-    let itemWidth = width - (padding * 3)
-    
-    let flowLayout = UICollectionViewFlowLayout()
-    flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-    flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth / 4)
-    
-    return flowLayout
   }
   
   func configureDataSource() {
