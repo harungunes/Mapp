@@ -12,6 +12,7 @@ class CountryListVC: UIViewController {
   enum Section { case main }
   
   var countryList: [Country] = []
+  var filteredCountries: [Country] = []
   var collectionView: UICollectionView!
   var dataSource: UICollectionViewDiffableDataSource<Section, Country>!
   
@@ -49,7 +50,7 @@ class CountryListVC: UIViewController {
         self.presentTrAlertVC(title: "Bad stuff happened here", body: error.rawValue, buttonTitle: "Ok")
       case .success(let countries):
         self.countryList = countries
-        self.updateData()
+        self.updateData(for: self.countryList)
       }
     }
   }
@@ -71,10 +72,10 @@ class CountryListVC: UIViewController {
     })
   }
   
-  func updateData() {
+  func updateData(for counties: [Country]) {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Country>()
     snapshot.appendSections([.main])
-    snapshot.appendItems(countryList)
+    snapshot.appendItems(counties)
     DispatchQueue.main.async { self.dataSource.apply(snapshot,animatingDifferences: true) }
   }
 }
@@ -82,9 +83,10 @@ class CountryListVC: UIViewController {
 
 extension CountryListVC: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
+    guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
     
-    
-    
+    filteredCountries = countryList.filter { $0.country.lowercased().contains(filter.lowercased()) }
+    updateData(for: filteredCountries)
   }
   
   
