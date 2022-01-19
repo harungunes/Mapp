@@ -21,6 +21,7 @@ class CountryListVC: UIViewController {
     title = "Trackio"
     
     configureNavigationBar()
+    configureSearchController()
     getCountryData()
     configureCollectionView()
     configureDataSource()
@@ -29,6 +30,14 @@ class CountryListVC: UIViewController {
   private func configureNavigationBar() {
     navigationController?.isNavigationBarHidden = false
     navigationController?.navigationBar.prefersLargeTitles = true
+  }
+  
+  func configureSearchController() {
+    let searchController = UISearchController()
+    searchController.searchResultsUpdater = self
+    searchController.searchBar.placeholder = "Search"
+    searchController.obscuresBackgroundDuringPresentation = false
+    navigationItem.searchController = searchController
   }
   
   func getCountryData() {
@@ -68,4 +77,15 @@ class CountryListVC: UIViewController {
     snapshot.appendItems(countryList)
     DispatchQueue.main.async { self.dataSource.apply(snapshot,animatingDifferences: true) }
   }
+}
+
+
+extension CountryListVC: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    
+    
+    
+  }
+  
+  
 }
