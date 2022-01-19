@@ -15,6 +15,7 @@ class CountryListVC: UIViewController {
   var filteredCountries: [Country] = []
   var collectionView: UICollectionView!
   var dataSource: UICollectionViewDiffableDataSource<Section, Country>!
+  var isSearching = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -60,6 +61,7 @@ class CountryListVC: UIViewController {
     collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createOneColumnLayout(in: view))
     view.addSubview(collectionView)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
+    collectionView.delegate = self
     
     collectionView.backgroundColor = .systemBackground
     collectionView.register(CountryCell.self, forCellWithReuseIdentifier: CountryCell.reuseID)
@@ -81,16 +83,31 @@ class CountryListVC: UIViewController {
   }
 }
 
+extension CountryListVC: UICollectionViewDelegate {
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let activeArray = isSearching ? filteredCountries : countryList
+    let country = activeArray[indexPath.item]
+    
+    let destinationVC = CountryVC()
+    
+    present(destinationVC, animated: true)
+  }
+}
+
 
 extension CountryListVC: UISearchResultsUpdating, UISearchBarDelegate {
+  
   func updateSearchResults(for searchController: UISearchController) {
     guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
+    isSearching = true
     
     filteredCountries = countryList.filter { $0.country.lowercased().contains(filter.lowercased()) }
     updateData(for: filteredCountries)
   }
   
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    isSearching = false
     updateData(for: countryList)
   }
   
