@@ -35,6 +35,7 @@ class CountryListVC: UIViewController {
   
   func configureSearchController() {
     let searchController = UISearchController()
+    searchController.searchBar.delegate = self
     searchController.searchResultsUpdater = self
     searchController.searchBar.placeholder = "Search"
     searchController.obscuresBackgroundDuringPresentation = false
@@ -81,7 +82,7 @@ class CountryListVC: UIViewController {
 }
 
 
-extension CountryListVC: UISearchResultsUpdating {
+extension CountryListVC: UISearchResultsUpdating, UISearchBarDelegate {
   func updateSearchResults(for searchController: UISearchController) {
     guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
     
@@ -89,5 +90,8 @@ extension CountryListVC: UISearchResultsUpdating {
     updateData(for: filteredCountries)
   }
   
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    updateData(for: countryList)
+  }
   
 }
