@@ -9,6 +9,8 @@ import UIKit
 
 class CountryVC: UIViewController {
   
+  var countryName: String!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -17,6 +19,14 @@ class CountryVC: UIViewController {
   
   private func configure() {
     view.backgroundColor = .systemBlue
+    
+    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
+    navigationItem.rightBarButtonItem = doneButton
+    navigationController?.navigationBar.tintColor = .systemGreen
   }
   
+  @objc
+  func dismissVC() {
+    dismiss(animated: true)
+  }
 }

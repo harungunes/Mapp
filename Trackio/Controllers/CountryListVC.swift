@@ -90,8 +90,9 @@ extension CountryListVC: UICollectionViewDelegate {
     let country = activeArray[indexPath.item]
     
     let destinationVC = CountryVC()
-    
-    present(destinationVC, animated: true)
+    destinationVC.countryName = country.country
+    let navController = UINavigationController(rootViewController: destinationVC)
+    present(navController, animated: true)
   }
 }
 
