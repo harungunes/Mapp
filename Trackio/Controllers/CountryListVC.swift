@@ -44,7 +44,7 @@ class CountryListVC: UIViewController {
   }
   
   func getCountryData() {
-    NetworkManager.shared.getCountryData { [weak self] result in
+    NetworkManager.shared.getCountryListData { [weak self] result in
       guard let self = self else { return }
       
       switch result {
