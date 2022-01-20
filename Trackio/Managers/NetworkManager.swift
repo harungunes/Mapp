@@ -54,9 +54,11 @@ class NetworkManager {
     
   }
   
-  func getCountryData(for username: String, completed: @escaping (Result<Country, TrErrorMessages>) -> Void) {
+  func getCountryData(for country: String, completed: @escaping (Result<Country, TrErrorMessages>) -> Void) {
     
-    guard let url = URL(string: address) else {
+    let endpoint = address + "\(country)"
+    
+    guard let url = URL(string: endpoint) else {
       completed(.failure(.invalidUsername))
       return
     }
