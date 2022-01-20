@@ -23,6 +23,17 @@ class CountryVC: UIViewController {
     let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
     navigationItem.rightBarButtonItem = doneButton
     navigationController?.navigationBar.tintColor = .systemGreen
+    
+    NetworkManager.shared.getCountryData(for: countryName) { [weak self] result in
+      guard let self = self else { return }
+      
+      switch result {
+      case .failure(let error):
+        self.presentTrAlertVC(title: "Something went wrong", body: error.rawValue, buttonTitle: "Ok")
+      case .success(let country):
+        print(country)
+      }
+    }
   }
   
   @objc
