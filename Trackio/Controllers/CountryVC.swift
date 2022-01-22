@@ -15,15 +15,16 @@ class CountryVC: UIViewController {
     super.viewDidLoad()
     
     configure()
+    getCountryData()
   }
   
   private func configure() {
-    view.backgroundColor = .systemBlue
-    
     let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
     navigationItem.rightBarButtonItem = doneButton
     navigationController?.navigationBar.tintColor = .systemGreen
-    
+  }
+  
+  func getCountryData() {
     NetworkManager.shared.getCountryData(for: countryName) { [weak self] result in
       guard let self = self else { return }
       
