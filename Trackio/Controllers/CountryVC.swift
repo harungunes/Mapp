@@ -11,14 +11,18 @@ class CountryVC: UIViewController {
   
   var countryName: String!
   
+  let headerView = UIView()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     configure()
     getCountryData()
+    configureLayout()
   }
   
   private func configure() {
+    view.backgroundColor = .systemBackground
     let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
     navigationItem.rightBarButtonItem = doneButton
     navigationController?.navigationBar.tintColor = .systemGreen
@@ -32,9 +36,32 @@ class CountryVC: UIViewController {
       case .failure(let error):
         self.presentTrAlertVC(title: "Something went wrong", body: error.rawValue, buttonTitle: "Ok")
       case .success(let country):
-        print(country)
+        DispatchQueue.main.sync {
+          self.add(childVC: CountryInfoHeaderVC(country: country), to: self.headerView)
+        }
+        
       }
     }
+  }
+  
+  func configureLayout() {
+    view.addSubview(headerView)
+//    headerView.backgroundColor = .systemPink
+    headerView.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      headerView.heightAnchor.constraint(equalToConstant: 170)
+    ])
+  }
+  
+  func add(childVC: UIViewController, to containerView: UIView) {
+    addChild(childVC)
+    containerView.addSubview(childVC.view)
+    childVC.view.frame = view.bounds
+    childVC.didMove(toParent: self)
   }
   
   @objc

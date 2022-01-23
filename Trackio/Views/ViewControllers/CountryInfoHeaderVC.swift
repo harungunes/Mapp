@@ -44,10 +44,10 @@ class CountryInfoHeaderVC: UIViewController {
     let padding: CGFloat = 20
     
     NSLayoutConstraint.activate([
-      flagImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
+      flagImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
       flagImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
       flagImageView.heightAnchor.constraint(equalToConstant: 95),
-      flagImageView.widthAnchor.constraint(equalToConstant: 95),
+      flagImageView.widthAnchor.constraint(equalToConstant: 120),
       
       countryNameLabel.topAnchor.constraint(equalTo: flagImageView.topAnchor),
       countryNameLabel.leadingAnchor.constraint(equalTo: flagImageView.trailingAnchor, constant: padding),
@@ -55,7 +55,7 @@ class CountryInfoHeaderVC: UIViewController {
       countryNameLabel.heightAnchor.constraint(equalToConstant: 35),
       
       dateLabel.centerYAnchor.constraint(equalTo: flagImageView.centerYAnchor),
-      dateLabel.leadingAnchor.constraint(equalTo: flagImageView.leadingAnchor, constant: padding),
+      dateLabel.leadingAnchor.constraint(equalTo: flagImageView.trailingAnchor, constant: padding),
       dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
       dateLabel.heightAnchor.constraint(equalToConstant: 30)
     ])
@@ -65,5 +65,7 @@ class CountryInfoHeaderVC: UIViewController {
     flagImageView.downloadImage(from: country.countryInfo.flag)
     countryNameLabel.text = country.country
     dateLabel.text = "22.01.2022" // Dummy data for testing the label
+    dateLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+    dateLabel.textColor = .secondaryLabel
   }
 }
