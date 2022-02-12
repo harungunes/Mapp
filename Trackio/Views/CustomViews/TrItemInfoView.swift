@@ -12,6 +12,7 @@ class TrItemInfoView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    translatesAutoresizingMaskIntoConstraints = false
     backgroundColor = .systemPurple
   }
   

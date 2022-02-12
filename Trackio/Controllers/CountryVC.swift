@@ -39,6 +39,7 @@ class CountryVC: UIViewController {
       case .success(let country):
         DispatchQueue.main.sync {
           self.add(childVC: CountryInfoHeaderVC(country: country), to: self.headerView)
+          self.add(childVC: StatsItemVC(), to: self.statsView)
         }
         
       }
@@ -48,8 +49,6 @@ class CountryVC: UIViewController {
   func configureLayout() {
     view.addSubview(headerView)
     view.addSubview(statsView)
-    
-    statsView.backgroundColor = .green
     
     headerView.translatesAutoresizingMaskIntoConstraints = false
     statsView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +62,7 @@ class CountryVC: UIViewController {
       statsView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 10),
       statsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       statsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      statsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+      statsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
   }
   
