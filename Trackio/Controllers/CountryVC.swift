@@ -12,6 +12,7 @@ class CountryVC: UIViewController {
   var countryName: String!
   
   let headerView = UIView()
+  let statsView = UIView()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -46,14 +47,23 @@ class CountryVC: UIViewController {
   
   func configureLayout() {
     view.addSubview(headerView)
-//    headerView.backgroundColor = .systemPink
+    view.addSubview(statsView)
+    
+    statsView.backgroundColor = .green
+    
     headerView.translatesAutoresizingMaskIntoConstraints = false
+    statsView.translatesAutoresizingMaskIntoConstraints = false
     
     NSLayoutConstraint.activate([
       headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      headerView.heightAnchor.constraint(equalToConstant: 170)
+      headerView.heightAnchor.constraint(equalToConstant: 170),
+      
+      statsView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 10),
+      statsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      statsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      statsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     ])
   }
   
