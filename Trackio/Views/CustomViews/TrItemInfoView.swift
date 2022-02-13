@@ -33,15 +33,15 @@ class TrItemInfoView: UIView {
     case .cases:
       caseTypeLabel.text = CaseTypeNames.cases
       caseData.text = String(country.cases)
-      backgroundColor = .yellow
+      backgroundColor = Colors.statsBlue
     case .deaths:
       caseTypeLabel.text = CaseTypeNames.deaths
       caseData.text = String(country.deaths)
-      backgroundColor = .red
+      backgroundColor = Colors.statsRed
     case .recovered:
       caseTypeLabel.text = CaseTypeNames.recovered
       caseData.text = String(country.recovered)
-      backgroundColor = .green
+      backgroundColor = Colors.statsGreen
     }
   }
   
