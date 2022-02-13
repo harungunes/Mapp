@@ -39,7 +39,7 @@ class CountryVC: UIViewController {
       case .success(let country):
         DispatchQueue.main.sync {
           self.add(childVC: CountryInfoHeaderVC(country: country), to: self.headerView)
-          self.add(childVC: StatsItemVC(), to: self.statsView)
+          self.add(childVC: StatsItemVC(country: country), to: self.statsView)
         }
         
       }
