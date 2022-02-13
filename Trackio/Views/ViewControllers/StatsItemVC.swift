@@ -9,7 +9,7 @@ import UIKit
 
 class StatsItemVC: UIViewController {
   
-  let switchButton = UISwitch(frame: .zero)
+  let switchButton = TrSwitchButton(frame: .zero)
   
   var country: Country!
   
@@ -78,13 +78,10 @@ class StatsItemVC: UIViewController {
     view.addSubview(switchButtonTitle)
     view.addSubview(switchButton)
     
+    switchButton.addTarget(self, action: #selector(switched), for: .valueChanged)
+    
     switchButtonTitle.text = "Total"
     switchButtonTitle.font = UIFont.boldSystemFont(ofSize: 24)
-    
-    switchButton.translatesAutoresizingMaskIntoConstraints = false
-    switchButton.onTintColor = .systemGray5
-    switchButton.setOn(false, animated: true)
-    switchButton.addTarget(self, action: #selector(switched), for: .valueChanged)
     
     NSLayoutConstraint.activate([
       switchButtonTitle.centerYAnchor.constraint(equalTo: switchButton.centerYAnchor),
