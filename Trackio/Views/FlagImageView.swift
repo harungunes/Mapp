@@ -23,6 +23,8 @@ class FlagImageView: UIImageView {
   private func configure() {
     translatesAutoresizingMaskIntoConstraints = false
     layer.cornerRadius = 10
+    layer.borderWidth = 1
+    layer.borderColor = UIColor.systemGray5.cgColor
     clipsToBounds = true
     image = UIImage(named: "placeholder")
   }

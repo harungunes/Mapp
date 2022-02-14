@@ -19,7 +19,7 @@ class NetworkManager {
   func getCountryListData(completed: @escaping (Result<[Country], TrErrorMessages>) -> Void) {
     
     guard let url = URL(string: address) else {
-      completed(.failure(.invalidUsername))
+      completed(.failure(.invalidCountry))
       return
     }
     
@@ -59,7 +59,7 @@ class NetworkManager {
     let endpoint = address + "\(country)"
     
     guard let url = URL(string: endpoint) else {
-      completed(.failure(.invalidUsername))
+      completed(.failure(.invalidCountry))
       return
     }
     
