@@ -28,8 +28,9 @@ class CountryCell: UICollectionViewCell {
   }
   
   private func configure() {
-    addSubview(flagImageView)
-    addSubview(countryLabel)
+    contentView.addSubview(flagImageView)
+    contentView.addSubview(countryLabel)
+    
     layer.cornerRadius = 10
     backgroundColor = .systemGray5
     
