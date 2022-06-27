@@ -64,7 +64,7 @@ class CountryInfoHeaderVC: UIViewController {
   func configureUIElements() {
     flagImageView.downloadImage(from: country.countryInfo.flag)
     countryNameLabel.text = country.country
-    dateLabel.text = "22.01.2022" // Dummy data for testing the label
+    dateLabel.text = Date().monthDayYearString
     dateLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
     dateLabel.textColor = .secondaryLabel
   }
